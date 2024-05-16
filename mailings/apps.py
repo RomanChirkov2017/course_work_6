@@ -7,5 +7,5 @@ class MailingsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'mailings'
 
-    #def ready(self):
-    #    call_command('runapscheduler')
+    def ready(self):
+        call_command('runapscheduler')

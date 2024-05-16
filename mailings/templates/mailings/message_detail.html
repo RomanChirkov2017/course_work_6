@@ -1,0 +1,18 @@
+{% extends 'mailings/base.html' %}
+{% load my_tags %}
+{% block content %}
+    <div class="row">
+            <div class="col-md-6">
+                <div class="h-100 p-5 bg-body-tertiary">
+                    <img class="card-img-top" src="{{ object.image|my_media }}" alt="Card image cap">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="h-100 p-5 bg-body-tertiary">
+                    <span style="font-size:24px;">Тема письма: {{ object.title }}</span><br><br>
+                    <span style="font-size:24px;">Текст письма: {{ object.text }}</span><br><br>
+                    <span style="font-size:24px;">Пользователь: {{ object.owner }}</span><br><br>
+                </div>
+            </div>
+    </div>
+{% endblock %}

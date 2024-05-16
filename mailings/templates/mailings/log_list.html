@@ -1,0 +1,25 @@
+{% extends 'mailings/base.html' %}
+{% load my_tags %}
+{% block content %}
+    <div class="row">
+        {% for object in object_list %}
+        {% if user == object.owner %}
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <h4 style="text-align:center;">{{ object.mailing_list.title }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Дата и время попытки: {{ object.time }}</p>
+                        <p>Сообщение: {{ object.mailing_list.message.title }}</p>
+                        <p>Статус доставки: {{ object.status }}</p>
+
+                        <hr>
+                        <a class="btn btn-outline-danger float-right btn-sm" href="{% url 'mailings:log_delete' object.pk %}">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

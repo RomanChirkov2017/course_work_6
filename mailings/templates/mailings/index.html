@@ -1,0 +1,55 @@
+{% extends 'mailings/base.html' %}
+{% load my_tags %}
+{% block content %}
+        <div class="p-1 mb-1 bg-body-tertiary rounded-3">
+            <div class="container-fluid py-5">
+                <span style="font-size:30px;">
+                    Добро пожаловать в сервис автоматических рассылок. Мы поможем Вам держать ваших клиентов вкурсе самых последних новостей вашей компании!
+                </span><br><br>
+                {% if user.is_authenticated %}
+                <p><a class="btn btn-primary btn-lg" href="{% url 'mailings:mailing_list' %}" role="button">Перейти к рассылкам &raquo;</a></p>
+                {% endif %}
+            </div>
+        </div>
+        <h1 class="display-3">Статистика</h1><br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card border-primary mb-3">
+                    <div class="card-header bg-transparent border-primary">
+                        <span style="font-size:24px;">Количество рассылок всего: </span><br>
+                    </div>
+                    <div class="card-body text-info" style="text-align:center; font-size:80px;">
+                        {{ total_mailings }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-primary mb-3">
+                    <div class="card-header bg-transparent border-primary">
+                        <span style="font-size:24px;">Количество активных рассылок: </span><br>
+                    </div>
+                    <div class="card-body text-info" style="text-align:center; font-size:80px;">
+                        {{ active_mailings }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-primary mb-3">
+                    <div class="card-header bg-transparent border-primary">
+                        <span style="font-size:24px;">Количество уникальных клиентов для рассылок: </span><br>
+                    </div>
+                    <div class="card-body text-info" style="text-align:center; font-size:80px;">
+                        {{ unique_clients }}
+                    </div>
+                </div>
+            </div>
+        </div><br><br><br>
+        <h1 class="display-3">Блог</h1><br>
+        <div class="row">
+        {% for object in object_list %}
+            {% include 'blog/includes/inc_blog.html' %}
+        {% endfor %}
+        </div>
+
+
+{% endblock %}

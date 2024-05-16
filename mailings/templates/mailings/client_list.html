@@ -1,0 +1,31 @@
+{% extends 'mailings/base.html' %}
+{% load my_tags %}
+{% block content %}
+    <div class="row">
+        <div class="row">
+            <div class="col-12 mb-5">
+                <a href="{% url 'mailings:client_create' %}" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Добавить клиента</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for object in object_list %}
+        {% if user == object.owner %}
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" src="{{ object.avatar|my_media }}" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text">{{ object.FIO }}</p>
+                        <p>{{ object.email }}</p>
+
+                        <hr>
+                        <a class="btn btn-outline-primary btn-sm" href="{% url 'mailings:client_detail' object.pk %}">Детали</a>
+                        <a class="btn btn-outline-primary btn-sm" href="{% url 'mailings:client_update' object.pk %}">Редактировать</a>
+                        <a class="btn btn-outline-danger float-right btn-sm" href="{% url 'mailings:client_delete' object.pk %}">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

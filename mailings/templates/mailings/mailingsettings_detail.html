@@ -1,0 +1,15 @@
+{% extends 'mailings/base.html' %}
+{% load my_tags %}
+{% block content %}
+    <div class="row">
+            <div class="col-md-6">
+                <div class="h-100 p-5 bg-body-tertiary">
+                    <span style="font-size:24px;">Название: {{ object.title }}</span><br><br>
+                    <span style="font-size:24px;">Начало рассылки: {{ object.start_time }}</span><br><br>
+                    <span style="font-size:24px;">Окончание рассылки: {{ object.end_time }}</span><br><br>
+                    <span style="font-size:24px;">Последняя отправка: {{ object.last_send }}</span><br><br>
+                    <span style="font-size:24px;">Активна: {{ object.is_active }}</span><br><br>
+                </div>
+            </div>
+    </div>
+{% endblock %}

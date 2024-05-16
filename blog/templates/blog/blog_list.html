@@ -1,0 +1,18 @@
+{% extends 'mailings/base.html' %}
+{% load my_tags %}
+{% block content %}
+    <div class="row">
+        {% if user.content_manager == True %}
+        <div class="row">
+            <div class="col-12 mb-5">
+            <a href="{% url 'blog:blog_create' %}" class="btn btn-primary">Создать статью</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        {% for object in object_list %}
+            {% include 'blog/includes/inc_blog.html' %}
+        {% endfor %}
+    </div>
+{% endblock %}
